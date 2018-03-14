@@ -73,6 +73,21 @@ class goToPose():
 		#TODO
 		o = 0
 		#TODO --> Euclidean for intelligent distance guess
+	def heuristicsCostEst(self, xDest, yDest):
+		xD = xDest - self.x
+		yD = yDest - self.y
+		d = math.sqrt(xD * xD + yD * yD)
+		#return (d)
+		movCost= [10, 10, 10, 10, 14, 14, 14, 14 ]
+		for val in neighbour:
+			val.g = currentNode.g + movCost[o]
+			val.h = heuristicsCostEst(val,60,34)
+			val.f = val.g + val.h
+			val.parent = currentNode.ids
+			o = o + 1
+		print o
+		print neighbour[4].x
+		print neighbour[4].h
 	
 
 if __name__ == '__main__':
