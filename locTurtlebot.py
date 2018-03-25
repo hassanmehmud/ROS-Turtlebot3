@@ -5,13 +5,13 @@ from nav_msgs.msg import Odometry
 from geometry_msgs.msg import PoseWithCovariance
 from geometry_msgs.msg import PoseStamped
 #TODO requires bit of alteration
-worldPlaces = []
-worldPlaces.append(("Coffee shop", 0.91, -0.95));
-worldPlaces.append(("Coffee shop", 0.10, -0.404));
-worldPlaces.append(("Coffee shop", -1.14, -2.88));
-worldPlaces.append(("Coffee shop", -2.59, -0.83));
-worldPlaces.append(("Coffee shop", -2.59, 0.53));
-worldPlaces.append(("Coffee shop", 1.29, -1.09));
+landmarks = []
+landmarks.append(("Coffee shop", 0.91, -0.95));
+landmarks.append(("Coffee shop", 0.10, -0.404));
+landmarks.append(("Coffee shop", -1.14, -2.88));
+landmarks.append(("Coffee shop", -2.59, -0.83));
+landmarks.append(("Coffee shop", -2.59, 0.53));
+landmarks.append(("Coffee shop", 1.29, -1.09));
 #calculate distance estimate
 def distEstimate(x1, y1, x2, y2):
     xD = x1 - x2
@@ -23,7 +23,7 @@ def callBack(msg):
     y = msg.pose.pose.position.y
     nearTo = None
     nearestDist = None
-    for locName, loc_x, loc_y, in worldPlaces:
+    for locName, loc_x, loc_y, in landmarks:
         lDist = distEstimate(x, y, loc_x, loc_y)
         if nearestDist is None or lDist < nearestDist:
             nearTo = locName

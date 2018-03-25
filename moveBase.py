@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#Help taken from http://wiki.ros.org/move_base_msgs
 #Move turtlebot3 from location A to location B through move_base, action client
 import rospy
 import actionlib
