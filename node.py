@@ -16,6 +16,7 @@ class node():
 	h=0
 	status=0
 	parent=0
+	# initializing nodes
 	def __init__(self,ids,x,y,g,h,f,status,parent):
 		self.ids=ids
 		self.x=x
