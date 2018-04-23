@@ -40,12 +40,7 @@ class goToPose():
         rospy.wait_for_message('/map',OccupancyGrid)
         rospy.Subscriber('/map',OccupancyGrid,self.updateMap)
         rospy.spin()
-        #calculate cost to estimate heuristics
-        
-        
-        
-        
-        
+        # find out the smallest node in openset
     def smallestScore():
 
         try:
@@ -75,7 +70,8 @@ class goToPose():
 	                    idsch=x.ids
 	                    break
             
-        return path    
+        return path
+        #calculate cost to estimate heuristics    
     def estimate(self, xDest, yDest):
         xD = xDest - self.x
         yD = yDest - self.y
@@ -119,6 +115,7 @@ class goToPose():
 
             if (x.x==(currentNode.x) and x.y==currentNode.y-1 and x.status!=100):
                 newNode=x
+                # prints found neighbours
                 print str(newNode.x)+ ' / Neighbours'
                 print str(newNode.y)+ ' / Neighbours'
                 neighbours.append(newNode)
@@ -127,13 +124,13 @@ class goToPose():
 
             if (x.x==(currentNode.x+1) and x.y==currentNode.y+1 and x.status!=100):
                 newNode=x
+                # prints found neighbours
                 print str(newNode.x) + ' / Neighbours'
                 print str(newNode.y) + ' / Neighbours'
                 neighbours.append(newNode)
                 fchStatus = x.status
                 obstStatus.append(fchStatus)
                 
-
             if (x.x==(currentNode.x-1) and x.y==currentNode.y+1 and x.status!=100):
                 newNode=x
                 neighbours.append(newNode)
@@ -202,21 +199,8 @@ class goToPose():
                 cameFrom.append(n) # append map data to list
                 c=c+1
                 idGlobal=idGlobal+1
-                        
-        '''self.data=[0,0,0,0,0,100,0,0,0,100,0,0,0,0,0,0,100,0,0,0,100,0,0,0,0,0,0,100,0,0,0,100,0,0,0,0,0,0,100,0,0,0,100,0,0,0,0,0,0,100,0,0,0,100,0,0,0,0,0,0,100,0,0,0,100,0,0,0,0,0,0,100,0,0,0,100,0,0,0,0,0,0,100,0,0,0,100,0,0,0,0,0,0,100,0,0,0,100,0,0,0,0,0,0,100,0,0,0,100,0]
-
-        for i in range(0,10):
-            for j in range(0,10):
-                n=node(-1,-1,-1,-1,-1,-1,-1,-1)
-                n.ids=idGlobal
-                n.status=self.data[c]
-                n.x=j
-                n.y=i
-                cameFrom.append(n) # append map data to list
-                c=c+1
-                idGlobal=idGlobal+1'''
         goal=0
-        goalNode=cameFrom[600]
+        goalNode=cameFrom[30]
         startNode=cameFrom[2]
         print str(startNode.x) + '/ Starting node X'
         print str (startNode.y) + '/ Starting node Y'
@@ -259,14 +243,11 @@ class goToPose():
                     else:
                         continue
                       
-        final_path=reConstruct(startNext,goalNode,closedSet)
+        final_path=reConstruct(startNext, goalNode,closedSet)
         final_path.reverse()
-        for m in final_path:
-	        print str(m.x) + "," + str(m.y)
-    # find out the smallest node in openset
-
-
-
+        for c in final_path:
+	        print '(' + str(c.x,)+',' + str(c.y,)+')',
+		print "/ X,Y coordinates for found path"
 if __name__ == '__main__':
 
     try:
