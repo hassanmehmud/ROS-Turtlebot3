@@ -1,8 +1,8 @@
 # ROS-Turtlebot3
 Repository contains following files:
 
-MoveBase client navigation
-A* implementation
-Robot state retriever
-sending sequence of goals to RVIZ
-CFD diagrams
+1: MoveBase client navigation
+2: A* implementation
+3: Robot state retriever
+4: sending sequence of goals to RVIZ
+5: CFD diagrams
