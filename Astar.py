@@ -37,9 +37,34 @@ class goToPose():
         global obstStatus
         obstStatus = []
         rospy.init_node('mynode')
+        '''rospy.Subscriber('odom' ,Odometry, self.update_odom)
+    	print "asdasdasd"
+        rospy.wait_for_message('/initialpose',PoseWithCovarianceStamped)
+        rospy.Subscriber('/initialpose',PoseWithCovarianceStamped,self.update_initial_pose)
+        rospy.wait_for_message('/move_base_simple/goal',PoseStamped)
+        rospy.Subscriber('/move_base_simple/goal',PoseStamped,self.update_goal)'''
         rospy.wait_for_message('/map',OccupancyGrid)
         rospy.Subscriber('/map',OccupancyGrid,self.updateMap)
         rospy.spin()
+        '''def updateOdom(self,msg1):
+    	self.x=msg1.pose.pose.position.x
+    	self.y=msg1.pose.pose.position.y
+    	grid_x = (int)((self.x + 10) / 0.05)
+        grid_y = (int)((self.y + 10) / 0.05)
+    	print grid_x
+    	print grid_y'''
+    '''def initPose(self,msg):
+    	print "asdasdasd"
+        self.x=msg.pose.pose.position.x
+        self.x=msg.pose.pose.position.y
+        print self.x
+        grid_x = (int)((self.x + 10) / 0.05)
+        grid_y = (int)((self.y + 10) / 0.05)
+    	print grid_x
+    	print grid_y
+    def updateGoal(self,msg2):
+    	self.z=msg2.pose.position.z
+    	#print self.z'''
         # find out the smallest node in openset
     def smallestScore():
 
